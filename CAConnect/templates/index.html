@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dynamic Chat</title>
+    <!-- Flask Static CSS Link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background-image: url('{{ initial_bg }}');">
+
+    <div id="chat-wrapper">
+        <header id="chat-header">
+            <h2>AI Dynamic Chat</h2>
+            <p id="prompt-caption">{{ initial_prompt }}</p>
+        </header>
+
+        <div id="chat-messages">
+            <!-- Messages will be appended here dynamically -->
+        </div>
+
+        <div id="chat-input-area">
+            <input 
+                type="text" 
+                id="message-input" 
+                placeholder="Type a message..." 
+                autocomplete="off"
+                onkeypress="if(event.key === 'Enter') sendMessage()"
+            />
+            <button id="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Socket.IO Client Library -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <!-- Flask Static JavaScript Link -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
